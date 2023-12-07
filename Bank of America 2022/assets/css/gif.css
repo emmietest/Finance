@@ -1,0 +1,12 @@
+.loader {
+        display: none;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: #0BB634 url(../imgs/loader.png) no-repeat center center;
+        text-align: center;
+        color: #999;
+    }

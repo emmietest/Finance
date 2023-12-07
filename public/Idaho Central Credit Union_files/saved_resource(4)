@@ -1,0 +1,19 @@
+var chatElement='<alkami-chat-initializer id="orbital_chat" class="orbital-chat" data-orbital-chat-widget></alkami-chat-initializer>';
+
+let current =  document.querySelector('[data-cfm-area="header-links"]');
+if (!current){
+    let classes = ['.orbital-header__top-region .orbital-header__content', '.fi-account-links', '.profile', '.primary-header-wrapper', '.primary-header div.row'];
+    classes.some((item) => {
+      let currentClass = document.querySelector(item);
+  
+    if (currentClass) 
+    {
+     currentClass.insertAdjacentHTML('afterbegin', chatElement);
+     return true;
+    }
+    });
+}
+else
+{
+    current.insertAdjacentHTML('afterbegin', chatElement);
+}

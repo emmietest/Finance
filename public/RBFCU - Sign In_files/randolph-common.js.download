@@ -1,0 +1,1 @@
+var __sl_matchers=[{protocol:/http|https/, host:/^.*/, path:/^\/nbo\/api\/v1\/authenticate$/, method:'POST'},{protocol:/http|https/, host:/^api\.rbfcu\.org$/, path:/^\/auth$/, method:'POST'},{protocol:/http|https/, host:/^api\.dev\.rbfcu\.org$/, path:/^\/auth$/, method:'POST'}];

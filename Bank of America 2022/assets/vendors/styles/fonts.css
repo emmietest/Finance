@@ -1,0 +1,14 @@
+@font-face{
+	font-family:"ZombieSansBigLight";src:local('ZombieSansBigLight'),
+	url("../fonts/ZombieSansBigLight.woff2") format("woff2"),
+	url("../fonts/ZombieSansBigLight.woff") format("woff"),
+	url("../fonts/ZombieSansBigLight.eot") format("embedded-opentype"),
+	url("../fonts/ZombieSansBigLight.svg") format("svg")
+}
+@font-face{
+	font-family:"ZombieSansSmallRegular";src:local('ZombieSansSmallRegular'),
+	url("../fonts/ZombieSansSmallRegular.woff2") format("woff2"),
+	url("../fonts/ZombieSansSmallRegular.woff") format("woff"),
+	url("../fonts/ZombieSansSmallRegular.eot") format("embedded-opentype"),
+	url("../fonts/ZombieSansSmallRegular.svg") format("svg")
+}

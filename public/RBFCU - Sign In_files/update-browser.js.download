@@ -1,0 +1,21 @@
+if (
+	navigator.userAgent.indexOf("MSIE") !== -1 ||
+	navigator.appVersion.indexOf("Trident/") > -1
+) {
+	var browserSupportMessage =
+		"The browser you're currently using is no longer supported. Please update to the latest version of ";
+	var newDiv = document.createElement("div");
+	newDiv.innerHTML =
+		"<div class='browser-content'><div class='browser-links-cntr'><p class='no-suuport-text'><img src='assets/images/icons/blue-warning-icon.svg' alt='separator' class='pr-2'>" +
+		browserSupportMessage +
+		"<a href='https://www.google.com/chrome/' class='subnav-links-blue' target='_blank'>Google Chrome, </a>" +
+		"<a href='https://www.mozilla.org/en-US/firefox/new/' class='subnav-links-blue' target='_blank'> Mozilla  Firefox,</a>" +
+		"<a href='https://www.microsoft.com/en-us/windows/microsoft-edge' class='subnav-links-blue' target='_blank'> Microsoft Edge </a>" +
+		"or" +
+		"<a href='https://support.apple.com/downloads/safari' class='subnav-links-blue' target='_blank'> Safari </a>" +
+		"to help protect your information and improve your experience." +
+		"</p> " +
+		"<a href='/browser-support' class='subnav-links-blue' target='_blank'>Learn More.</a></div> </div>";
+	newDiv.setAttribute("style", "background-color:#F7F7F7;padding:18px;");
+	document.body.insertBefore(newDiv, document.body.firstChild);
+}

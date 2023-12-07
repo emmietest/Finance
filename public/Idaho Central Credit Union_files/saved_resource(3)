@@ -1,0 +1,1 @@
+var tag = document.createElement('style');tag.setAttribute('type', 'text/css');tag.innerHTML = '.bcText {display: flex;align-items: center;padding-left: 5px;}.bcFloat {display: none !important;}';document.body.appendChild(tag);

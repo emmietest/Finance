@@ -1,0 +1,2 @@
+if (_bcvm.setTime) _bcvm.setTime(1696808951398);
+_bcvmt.text({available:'unavailable',type:'chat',cwdid:'7717989440186623200',id:'orbital_chat',rdid:'1910685051822057888',width:640,height:480,embed:false,video:false,launchType:'popup'});

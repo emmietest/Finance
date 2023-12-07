@@ -1,0 +1,1 @@
+﻿function ScriptRegistrar_init(n){var i={},t,r;for(t in n)i[System.normalizeSync(t)]=System.normalizeSync(n[t]);r=System.locate;System.locate=function(n){return Promise.resolve(r.call(this,n)).then(function(n){return i[n]||n})}}

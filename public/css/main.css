@@ -1,0 +1,7 @@
+:root{
+    --color: red;
+}
+
+.container-border{
+    border: solid 2px (--color);
+}

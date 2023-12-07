@@ -1,0 +1,7 @@
+@font-face {
+	font-family: 'WellsFargoSans-Regular';
+	src:url('WellsFargoSans_W_Rg.woff2') format('woff2'),
+		url('WellsFargoSans_W_Rg.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+}

@@ -1,0 +1,3 @@
+window.isIE = function() {
+	return false || !!document.documentMode;
+};

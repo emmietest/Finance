@@ -1,0 +1,107 @@
+@media screen and (max-width:1225px){
+    .zombie-logo {
+        left: 4%;
+    }
+    .zombie-form-container{
+        padding-top: 10px;
+        border-top: 1px solid #D3D3D3;
+    }
+    .secure-icon {
+        right: 3%;
+    }
+    .zombie-sections-steps{
+    	margin-bottom:10px;
+    }
+}
+@media screen and (max-width:580px){
+    body{
+        background:none;
+    }
+    /*.zombie-header:before {
+        content: '';
+        display: block;
+        width: 100%;
+        position: absolute;
+        height: 84px;
+        background: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,0) 100%);
+        top: 0;
+        z-index: -1;
+    }*/
+    .zombie-logo{
+        display: block;
+        background: url(../images/sslogo.svg) center center no-repeat;
+        background-size: contain;
+        /* text-indent: -999em; */
+        margin: 0;
+        overflow: hidden;
+        width: 127px;
+        height: 68px;
+        z-index: 1;
+    }
+    .secure-icon svg path{
+        fill:#0070ba;
+    }
+    .secure-icon span{
+        color:#0070ba;
+    }
+    .zombie-section{
+        padding-top: 72px;
+    }
+    .zombie-modal-container{
+        min-width: 0;
+        max-width: 100%;
+        padding-left: 3.75%;
+        padding-right: 3.75%;
+        width: 100%;
+        box-sizing: border-box;
+        border:none;
+        box-shadow:none;
+        padding-top:0;
+        padding-bottom: 0;
+	    margin-bottom: 0;
+    }
+    .zombie-footer{
+        background: #EFEFEF;
+        width: auto;
+        margin: 3em auto 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-top: 1px solid #CDCDCD;
+    }
+    .copyright,.legal ul li a{
+        color: #fff;
+    }
+    .zombie-form-container{
+        padding-top:20px;
+    }
+    .zombie-alert-section{
+        padding-top:50px;
+    }
+    .restoretitle {
+        font-size: 19px;
+    }
+    ..lighttitle{
+        font-size:21px;
+    }
+}
+@media screen and (max-width:415px){
+    .lighttitle{
+        font-size:22px;
+    }
+}
+@media screen and (max-width:375px){
+    .lighttitle{
+        font-size:21px;
+    }
+    .restoretitle {
+        font-size: 17px;
+    }
+}
+@media screen and (max-width:320px){
+    .lighttitle{
+        font-size:18px;
+    }
+    .country-selector{
+        display:none;
+    }
+}
