@@ -1,0 +1,42 @@
+define([], function() { return {
+  "name": "LOGON_ALERT_HEADER",
+  "states": {
+    "nativeAppAdBannerDisplayedState": true,
+    "thirdPartyAccessErrorBannerDisplayedState": true,
+    "isInternetExplorerBlocked": true
+  },
+  "actions": {
+    "requestDownloadMobileApplication": true,
+    "exitDownloadMobileApplication": true,
+    "requestAppleChaseMobileApplication": true,
+    "requestAndroidChaseMobileApplication": true,
+    "cancelDownloadMobileApplication": true,
+    "requestUpgradeBrowser": true,
+    "exitUpgradeBrowser": true,
+    "requestLogonPage": true
+  },
+  "settings": {
+    "cancelDownloadMobileApplicationLabel": true,
+    "cancelDownloadMobileApplicationAda": true,
+    "downloadMobileApplicationAdvisory": true,
+    "downloadMobileApplicationMessage": true,
+    "downloadMobileApplicationHeader": true,
+    "downloadMobileApplicationAda": true,
+    "exitDownloadMobileApplicationAda": true,
+    "requestAppleChaseMobileApplicationAda": true,
+    "requestAndroidChaseMobileApplicationAda": true,
+    "requestDownloadMobileApplicationLabel": true,
+    "requestDownloadMobileApplicationAda": true,
+    "exitDownloadMobileApplicationLabel": true,
+    "chaseLogoAda": true,
+    "requestUpgradeBrowserAda": true,
+    "upgradeBrowserHeader": true,
+    "upgradeBrowserAdvisory": true,
+    "upgradeBrowserMessage": true,
+    "exitUpgradeBrowserAda": true,
+    "upgradeBrowserCommunicationAdvisory": true,
+    "thirdPartyCookieAccessHeader": true,
+    "thirdPartyCookieAccessAdvisory": true,
+    "requestLogonPageLabel": true
+  }
+}; });

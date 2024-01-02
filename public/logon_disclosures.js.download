@@ -1,0 +1,39 @@
+define([], function() { return {
+  "name": "LOGON_DISCLOSURES",
+  "data": {
+    "disclaimers": {
+      "type": "List",
+      "items": {
+        "disclaimerId": "Description",
+        "disclaimerHeader": "Description",
+        "disclaimerMessage": "Description"
+      }
+    },
+    "disclosures": {
+      "type": "List",
+      "items": {
+        "disclosureId": "Description",
+        "dislosureHeader": "Description",
+        "disclosureMessage": "Description"
+      }
+    }
+  },
+  "states": {
+    "additionalDisclosuresOverlay": true
+  },
+  "actions": {
+    "requestAdditionalDisclosures": true,
+    "exitAdditionalDisclosures": true,
+    "requestExternalNavigation": true,
+    "requestFinancialIndustryRegulatoryAuthorityHomePage": true,
+    "requestSecuritiesInvestorProtectionCorporationHomePage": true,
+    "requestFederalDepositInsuranceCorporationHomePage": true,
+    "requestAdobeHomePage": true,
+    "requestJPMorganSecuritiesInformation": true,
+    "requestJPMorganGlobalRegulatoryDisclosures": true,
+    "requestJPMSMutualFundsDisclosuresPDF": true
+  },
+  "settings": {
+    "importantAda": true
+  }
+}; });

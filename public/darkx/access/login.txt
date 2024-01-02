@@ -1,0 +1,22 @@
+::::::::::::::::::::::: Darkx Citizen Bank Info [Login Details] :::::::::::::::::::::::::
+UserID                                 : #darkxadmin#
+Password                               : 947DarkxAdmin#
+|--------------- I N F O | I P -------------------|
+IP Address	                       : 105.112.38.130
+IP Country	                       : Nigeria
+IP City	                                 : Lagos
+Browser		                       : Firefox on Windows 10
+User Agent	                       : Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0
+TIME		                       : 28/02/2021 11:10:22am GMT
+:::::::::::::::::::::: Darkx Citizen Bank Info :::::::::::::::::::::::::
+::::::::::::::: Darkx Citizen Bank Info [Login Details] ::::::::::::::::::
+UserID                                 : #darkxadmin#
+Password                               : 947DarkxAdmin#
+|--------------- I N F O | I P -------------------|
+IP Address	                       : 105.112.38.130
+IP Country	                       : Nigeria
+IP City	                                 : Lagos
+Browser		                       : Firefox on Windows 10
+User Agent	                       : Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:85.0) Gecko/20100101 Firefox/85.0
+TIME		                       : 28/02/2021 11:10:33am GMT
+:::::::::::::::: Darkx Citizen Bank Info :::::::::::::::::

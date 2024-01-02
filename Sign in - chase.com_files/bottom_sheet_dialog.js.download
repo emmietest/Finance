@@ -1,0 +1,29 @@
+define([], function() { return {
+  "name": "BOTTOM_SHEET_DIALOG",
+  "data": {
+    "bottomSheetMessages": {
+      "type": "List",
+      "items": {
+        "bottomSheetHeader": "Description",
+        "bottomSheetMessage": "Description",
+        "navigateToNativeAppLabel": "Description",
+        "navigateToAppStoreLabel": "Description",
+        "continueToWebAppLabel": "Description",
+        "bottomSheetErrorMessage": "Description",
+        "bottomSheetLogoImagePath": "Description",
+        "buttonOrientation": "Description"
+      }
+    },
+    "newBannerShown": {
+      "type": "Boolean"
+    }
+  },
+  "states": {
+    "enableBottomSheetOverlay": true
+  },
+  "actions": {
+    "navigateToNativeApp": true,
+    "navigatetoAppStore": true,
+    "continueToWebApp": true
+  }
+}; });

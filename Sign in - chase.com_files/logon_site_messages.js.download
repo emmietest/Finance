@@ -1,0 +1,20 @@
+define([], function() { return {
+  "name": "LOGON_SITE_MESSAGES",
+  "data": {
+    "siteMessageHeader": {
+      "type": "Description"
+    },
+    "siteMessageDescription": {
+      "type": "Description"
+    }
+  },
+  "actions": {
+    "exitSiteMessage": true
+  },
+  "settings": {
+    "importantAda": true,
+    "exitSiteMessageAda": true,
+    "noSiteMessagesAda": true,
+    "siteMessagesAlertAda": true
+  }
+}; });

@@ -1,0 +1,77 @@
+/* 2015-11-13 o604070  Vikram Kamath
+    AMD helper module that separates static part of URL from dynamic part.
+
+    Example:
+
+    |<----- static --------------->|<-- dynamic -->|
+    http://example.com/abc/#a/route;params=CARD,123
+
+    Refer Unit Tests for example URLS 
+*/
+
+if (typeof define !== 'function') {
+  var define = require('amdefine')(module);
+}
+define(function () {
+  var hashSeparator = new RegExp(/\#/);
+  var hashParamsSeparator = new RegExp(/[\;|\&|?]/g);
+  function handleCommasInValues(obj, val) {
+    return val.split(",").reduce(function (p, c, i) {
+      p[i] = c;
+      return p;
+    }, obj);
+  }
+  function paramsAsObject(params) {
+    var obj = {};
+    var flyoutObj = {};
+    params.forEach(function (param) {
+      var keyValue = param.split("=");
+      if (keyValue.length > 2) return; // multiple = found
+      if (keyValue[1]) {
+        if (keyValue[1].indexOf(",") >= 0) {
+          // params=1,2,3 case found. discard keyValue[0]
+
+          // add support for flyout=key,param1,param2,paramN...
+          if (keyValue[0] === 'flyout') {
+            flyoutObj = handleCommasInValues(flyoutObj, keyValue[1]);
+            flyoutObj[keyValue[0]] = keyValue[1].split(',')[0];
+          }
+          obj = handleCommasInValues(obj, keyValue[1]);
+        } else {
+          if (keyValue[0] === 'flyout') {
+            flyoutObj[keyValue[0]] = keyValue[1];
+          }
+          obj[keyValue[0]] = keyValue[1];
+        }
+      } else {
+        if (keyValue[0].indexOf(",") >= 0) {
+          obj = handleCommasInValues(obj, keyValue[0]);
+        }
+      }
+    });
+    return {
+      obj: obj,
+      flyoutObj: flyoutObj
+    };
+  }
+  return function urlSeparator(url) {
+    var hashTokens, paramsObj;
+
+    // split URL into host + pathname AND hash
+    var urlTokens = url.split(hashSeparator);
+    if (urlTokens[1]) {
+      // hash exists
+
+      // split hash into hash pathname AND params
+      hashTokens = urlTokens[1].split(hashParamsSeparator);
+      paramsObj = paramsAsObject(hashTokens.slice(1));
+      return {
+        hashPathName: hashTokens[0],
+        hashParams: paramsObj.obj,
+        // pass everything but hashpathname to paramsAsObject
+        hashFlyoutParams: paramsObj.flyoutObj
+      };
+    }
+    return 'UNDEFINED_SCREEN_ID';
+  };
+});

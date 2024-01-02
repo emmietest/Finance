@@ -1,0 +1,16 @@
+define([], function() { return {
+  "name": "ENABLE_COOKIE",
+  "actions": {
+    "requestCookiePolicy": true
+  },
+  "states": {
+    "enableCookieOverlay": true
+  },
+  "settings": {
+    "enableCookieHeader": true,
+    "importantAda": true,
+    "cookiePolicyMessage": true,
+    "overlayAnnouncementAda": true,
+    "enableCookieMessage": true
+  }
+}; });

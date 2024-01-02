@@ -1,0 +1,120 @@
+define('dashboard/microAppsUrlMapper',{
+    // PLEASE SEE FOR DOCUMENTATION:
+    // `test/dashboard/js/lib/mapper/microAppsUrl.js`
+    definitions: {
+        default: 'header.index,convoDeck.index.index,menu.index',
+        defaultWithFlyout: 'default,flyout.index',
+        defaultWithMyHome: 'myHome.chaseMyHome.index,header.index,convoDeck.index.index,menu.index',
+        defaultWithInvestmentsFooter: 'header.index,convoDeck.index.index,flyout.index,menu.ignore,shared.index,investmentDisclosure.investmentsFooter',
+        defaultWithMenuIgnore: 'menu.ignore,header.index,shared.index,convoDeck.index.index,flyout.index',
+        defaultWithoutHeaderIndex: 'menu.ignore,shared.index,convoDeck.index.index,flyout.index',
+        defaultWithCJP: 'menu.index,header.index,shared.index,convoDeck.index.index,creditJourney.home.index'
+    },
+    mapper: {
+        default: [
+            'cardLendingPayments',
+            'investmentProspect',
+            'merchantPreference',
+            'myrealestate',
+            'oi-portfolio',
+            'oi-trade',
+            'payinfour',
+            'reporting',
+            'retirementHub',
+            'retirementPlanningCalculators',
+            'retirementhealthcare',
+            'screeners',
+            'spendingPlanner',
+            'autosave',
+            'storefront',
+            'summary',
+            'overview',
+            'activity',
+            'imageDetails',
+            'transactionDetails',
+            'securityandprivacy',
+            'chaseonboarding',
+            'helpandsupport',
+            'travel',
+            'dining.zagatsurvey',
+            'vterminal',
+            'appointments',
+            'accounting',
+            'myAdvisoryTeam',
+            'emob',
+            'transfersecurities',
+            'autoLendingServicing',
+            'acceptCardPayments',
+            'merchantOffers',
+            'merchantWalletProvisioning',
+            'paymentplanrecovery',
+            'smbinvoicing',
+            'collectanddeposithub',
+            'shoppingplatform',
+            'estatebeneficiary',
+            'benefits',
+            'consumerinsights',
+            'campaignmanager',
+            'realtimerequestpayment',
+            'smbcatalog',
+            'payroll',
+            'overdraftservices',
+            'shopping',
+            'fraudsecurityhub',
+            'quickaccept',
+            'billpaydirectory'
+        ],
+        defaultWithFlyout: [
+            'businessQuarterlyReport',
+            'externalAccountSummary',
+            'externalAccountDashboard',
+            'findinvestments.overview',
+            'selfdirectedinvesting.overview',
+            'whatwedo.overview',
+            'privateclientadvisors.overview',
+            'personaladvisor.overview',
+            'interstitialmicroapp',
+            'investmentProspect',
+            'investmentSearchResults',
+            'myrealestate',
+            'oi-portfolio',
+            'oi-trade',
+            'retirementHub',
+            'retirementPlanningCalculators',
+            'retirementRollover',
+            'retirementhealthcare',
+            'screeners',
+            'activity',
+            'transactions',
+            'summary',
+            'overview',
+            'myAdvisoryTeam',
+            'emob',
+            'benefits',
+            'acp-onboarding',
+            'investmentcheckup',
+            'realtimerequestpayment'
+        ],
+        defaultWithMyHome: [
+            'cmh',
+            'myhomeoffers'
+        ],
+        defaultWithInvestmentsFooter: [
+            'cevm'
+        ],
+        defaultWithMenuIgnore: [
+            'idlecash',
+            'oi-agreements',
+            'accountfundinghub',
+            'managetransfer'
+        ],
+        defaultWithoutHeaderIndex: [
+            'underwriting'
+        ],
+        defaultWithCJP: [
+            'creditjourneyapp.support.idRestoration'
+        ]
+    },
+});
+
+define("dashboard/microAppsUrlMapper", [],function(){});

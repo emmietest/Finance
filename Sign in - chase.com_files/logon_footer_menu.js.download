@@ -1,0 +1,79 @@
+define([], function() { return {
+  "name": "LOGON_FOOTER_MENU",
+  "data": {
+    "disclaimers": {
+      "type": "List",
+      "items": {
+        "disclaimerId": "Description",
+        "disclaimerHeader": "Description",
+        "disclaimerMessage": "Description"
+      }
+    },
+    "disclosures": {
+      "type": "List",
+      "items": {
+        "disclosureId": "Description",
+        "dislosureHeader": "Description",
+        "disclosureMessage": "Description"
+      }
+    }
+  },
+  "actions": {
+    "requestChaseFacebook": true,
+    "requestChaseTwitter": true,
+    "requestChaseLinkedIn": true,
+    "requestChaseYouTube": true,
+    "requestChaseInstagram": true,
+    "requestContactUs": true,
+    "requestPrivacyNotice": true,
+    "requestSecurity": true,
+    "requestTermsOfUse": true,
+    "requestAdChoices": true,
+    "requestAccessibility": true,
+    "requestMortgageLoanOriginators": true,
+    "requestHomeMortgageDisclosureAct": true,
+    "requestAboutChase": true,
+    "requestJpMorgan": true,
+    "requestJpMorganChaseCo": true,
+    "requestCareers": true,
+    "requestEspanol": true,
+    "requestChaseCanada": true,
+    "requestSiteMap": true,
+    "requestLogonHelpAndSupportMessage": true
+  },
+  "states": {
+    "siteExitWarningOverlay": true
+  },
+  "settings": {
+    "requestLogonHelpAndSupportMessageLabel": true,
+    "logonHelpAndSupportMessage": true,
+    "requestLogonHelpAndSupportMessageAda": true,
+    "requestChaseFacebookAda": true,
+    "requestChaseTwitterAda": true,
+    "requestChaseLinkedInAda": true,
+    "requestChaseYouTubeAda": true,
+    "requestChaseInstagramAda": true,
+    "requestContactUsLabel": true,
+    "requestPrivacyNoticeLabel": true,
+    "requestSecurityLabel": true,
+    "requestTermsOfUseLabel": true,
+    "requestAdChoicesLabel": true,
+    "requestAccessibilityLabel": true,
+    "requestMortgageLoanOriginatorsLabel": true,
+    "requestHomeMortgageDisclosureActLabel": true,
+    "requestAboutChaseLabel": true,
+    "requestJpMorganLabel": true,
+    "requestJpMorganChaseCoLabel": true,
+    "requestCareersLabel": true,
+    "requestEspanolLabel": true,
+    "requestChaseCanadaLabel": true,
+    "requestSiteMapLabel": true,
+    "followUsLabel": true,
+    "copyrightLabel": true,
+    "memberFdicLabel": true,
+    "equalHousingLenderLabel": true,
+    "opensDialogAda": true,
+    "productName": true,
+    "jpMorganChaseLabel": true
+  }
+}; });

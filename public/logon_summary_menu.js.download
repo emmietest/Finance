@@ -1,0 +1,14 @@
+define([], function() { return {
+  "name": "LOGON_SUMMARY_MENU",
+  "actions": {
+    "requestChaseHomepage": true,
+    "requestJPMorganHomepage": true,
+    "exitLogon": true
+  },
+  "settings": {
+    "chaseLogoAda": true,
+    "jpMorganLogoAda": true,
+    "logoAda": true,
+    "thirdPartyLogoAda": true
+  }
+}; });

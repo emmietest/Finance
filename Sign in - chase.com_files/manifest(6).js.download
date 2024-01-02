@@ -1,0 +1,1 @@
+define({version:2,area:{module:"thirdPartyConsentServices/area",dependencies:{"./css/thirdPartyConsentServices.css":"css"}}});

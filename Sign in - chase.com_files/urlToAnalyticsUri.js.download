@@ -1,0 +1,133 @@
+/* 2015-11-13 o604070  Vikram Kamath
+ AMD helper module that returns a unique screen Id given the URL from lookup config file.
+ Additionally, it appends user-specific params as query params to screen Id.
+ */
+
+if (typeof define !== 'function') {
+  var define = require('amdefine')(module);
+}
+define(function (require) {
+  var structure = require('../config/lookup');
+  var urlSeparator = require('./urlSeparator');
+  var useParamsObject = function (urlObj, paramsObject) {
+    var uriIndex, someMatch, nullIndex;
+    var paramslen = Object.keys(paramsObject).length;
+    someMatch = urlObj.nonUser.some(function (elem, i) {
+      if (elem) {
+        if (Object.keys(elem).every(function (key) {
+          return elem[key] === paramsObject[key];
+        })) {
+          uriIndex = i;
+          return true;
+        }
+      } else {
+        // elem null
+        nullIndex = i;
+      }
+    });
+    return someMatch ? uriIndex : nullIndex >= 0 ? nullIndex : -1;
+  };
+  function applyParams(urlObj, uriIndex, paramsObject) {
+    var params = '';
+    if (urlObj.user && urlObj.user.length) {
+      // handle user 
+      var obj = urlObj.user[uriIndex];
+      if (obj && Object.keys(obj).length) {
+        params = Object.keys(obj).reduce(function (p, c, index) {
+          if (paramsObject[c] === undefined) {
+            if (urlObj.optionalUser && urlObj.optionalUser.length) {
+              var objUserOp = urlObj.optionalUser[uriIndex];
+              if (objUserOp !== null && objUserOp.indexOf(obj[c]) != -1) {
+                return p;
+              }
+            }
+          }
+          var dynamic = obj[c] + '=' + paramsObject[c];
+          return p === '' ? p + dynamic : p + '&' + dynamic;
+        }, '');
+      }
+    }
+
+    // check for exportableNonUser 
+    if (urlObj.exportableNonUser && urlObj.exportableNonUser.length) {
+      var obj = urlObj.exportableNonUser[uriIndex];
+      if (obj && Object.keys(obj).length) {
+        params = Object.keys(obj).reduce(function (p, c, index) {
+          var dynamic = obj[c] + '=' + paramsObject[c];
+          // if undefined, and if remapped to the key has a value
+          if (paramsObject[c] === undefined && paramsObject[obj[c]] !== undefined) {
+            dynamic = obj[c] + '=' + paramsObject[obj[c]];
+          }
+          return p === '' ? p + dynamic : p + '&' + dynamic;
+        }, params);
+      }
+    }
+    return params === '' ? '' : '?' + params; //fallback to returning nothing
+  }
+
+  function getScreenIdFromComponents(hashObject) {
+    var urlObj = structure[hashObject.hashPathName];
+    var foundScreenId = 'UNDEFINED_SCREEN_ID';
+    var uriIndex, paramsUri;
+    if (hashObject === 'UNDEFINED_SCREEN_ID') {
+      return foundScreenId;
+    }
+    if (hashObject.hashFlyoutParams["flyout"] !== undefined) {
+      foundScreenId = getScreenIdForFlyout(hashObject);
+    }
+    if (foundScreenId === 'UNDEFINED_SCREEN_ID') {
+      if (urlObj) {
+        if (!hashObject.hashParams || Object.keys(hashObject.hashParams).length === 0) {
+          if (urlObj['uri'] && urlObj['uri'].length) {
+            foundScreenId = urlObj['uri'][0];
+          } else {
+            foundScreenId = 'UNDEFINED_SCREEN_ID';
+          }
+        } else {
+          uriIndex = useParamsObject(urlObj, hashObject.hashParams);
+          paramsUri = applyParams(urlObj, uriIndex, hashObject.hashParams);
+          if (uriIndex >= 0) {
+            var baseScreenId = urlObj['uri'][uriIndex];
+            foundScreenId = baseScreenId + (paramsUri === undefined ? '' : paramsUri);
+          } else {
+            foundScreenId = 'UNDEFINED_SCREEN_ID';
+          }
+        }
+      }
+    }
+    return foundScreenId;
+  }
+  var getScreenIdForFlyout = function (hashObject) {
+    var foundScreenId = 'UNDEFINED_SCREEN_ID';
+    var flyouts = structure['/flyoutSection'][hashObject.hashFlyoutParams["flyout"]];
+    var flyoutParams, paramsUri, screenIdIndex, nullNonUserParamIndex;
+    if (flyouts) {
+      flyoutParams = Object.keys(hashObject.hashFlyoutParams).filter(function (k) {
+        return !isNaN(parseInt(k, 10));
+      }).map(function (k) {
+        return hashObject.hashFlyoutParams[k];
+      });
+      if (!flyoutParams.length) {
+        nullNonUserParamIndex = flyouts.nonUser.reduce(function (a, c, i) {
+          return c === null && a === '' ? i : a;
+        }, '');
+        paramsUri = applyParams(Object.assign({
+          uri: flyouts.screenId
+        }, flyouts), nullNonUserParamIndex, hashObject.hashFlyoutParams);
+        foundScreenId = nullNonUserParamIndex !== '' ? flyouts.screenId[nullNonUserParamIndex] : 'UNDEFINED_SCREEN_ID';
+      } else {
+        screenIdIndex = useParamsObject(Object.assign({
+          uri: flyouts.screenId
+        }, flyouts), hashObject.hashFlyoutParams);
+        paramsUri = applyParams(Object.assign({
+          uri: flyouts.screenId
+        }, flyouts), screenIdIndex, hashObject.hashFlyoutParams);
+        foundScreenId = screenIdIndex >= 0 ? flyouts['screenId'][screenIdIndex] + (paramsUri === undefined ? '' : paramsUri) : 'UNDEFINED_SCREEN_ID';
+      }
+    }
+    return foundScreenId;
+  };
+  return function getScreenId(url) {
+    return getScreenIdFromComponents(urlSeparator(url));
+  };
+});

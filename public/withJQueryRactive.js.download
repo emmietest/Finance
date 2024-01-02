@@ -1,0 +1,218 @@
+define( ['require','blue-legacy/blue/jQuery','blue-view/page/web','blue-view-ractive/bridge','blue-view-ractive/view','path-toolkit','blue/log','blue/root'],function( require ){
+    'use strict';
+    var legacy$ = require( 'blue-legacy/blue/jQuery' ),
+        Page = require( 'blue-view/page/web' ),
+        Bridge = require( 'blue-view-ractive/bridge' ),
+        View = require( 'blue-view-ractive/view' ),
+        PathToolkit = require( 'path-toolkit' ),
+        getLogger = require( 'blue/log' ),
+        root = require( 'blue/root' ),
+        logger = getLogger( '[blue:legacy:blue-view-ractive]' ),
+        ptkFull = new PathToolkit( { simple:false } );
+
+    function shimPage$(){
+        var $ = legacy$.getJQuery();
+        Page.prototype.constructorLegacyCallback = function(){
+            this.context.$ = $;
+        };
+    }
+
+    function shimComponentCreation(){
+        var $ = legacy$.getJQuery();
+        View.prototype.createViewComponentLegacyCallback = function( comp ){
+            comp.view.$element = $( comp.view.element );
+        };
+    }
+
+    function shimInsertElement(){
+        var $ = legacy$.getJQuery();
+        View.prototype.insertElement = function( callback ){
+            var thisView = this;
+            thisView.element = thisView.createElement();
+            thisView.$element = $( thisView.element );
+            thisView.context.page.pageReady.then( function(){
+                callback.call( thisView, thisView.$element );
+            } );
+        };
+    }
+
+    function shimViewConstructor(){
+        View.prototype.constructorLegacyCallback = function(){
+            var thisView = this;
+            thisView.context.$ = function( selector ){
+                if( !thisView.$element ){ throw new Error( 'DOM cannot be accessed before render event' ); }
+                return selector ? thisView.$element.find( selector ) : thisView.$element;
+            };
+        };
+    }
+
+    function shim$(){
+        var $ = legacy$.getJQuery();
+        View.prototype.$ = function( selector ){
+            this.context.logger.warn( '[' + this.context.getStack() + ']', 'view.context.$ should be used in place of view.$' );
+            if( this.$element ){
+                return selector ?
+                    this.$element.find( selector ) :
+                    this.$element;
+            }
+            return selector ? $.find( selector ) : $( 'body' );
+        };
+    }
+
+    // First, intercept the "callback" argument supplied to View.insert.
+    // This function is called when the view has completed rendering, so
+    // any post-render features can be added at this point.
+    function shimInsert(){
+        var $ = legacy$.getJQuery(),
+            insert = View.prototype.insert;
+
+        View.prototype.insert = function(){
+            var view = this,
+                args = Array.prototype.slice.call( arguments ),
+                cb;
+            if( typeof args[ 2 ] === 'function' ){
+                cb = args[ 2 ];
+                args[ 2 ] = function(){
+                    if( view.target ){
+                        view.$target = $( view.target );
+                    }
+                    view.$element = view.$target.children().last();
+                    cb.apply( arguments );
+                };
+            }
+            insert.apply( this, args );
+        };
+    }
+
+    /**
+         * When PathToolkit evaluates the string path to find the requested value inside the data object,
+         * the source data object may differ depending on the argument. The argument string may have a prefix
+         * with certain special values that allow data from different sources such as the document or the
+         * event target element. If such a prefix exists, return the corresponding object as the data object.
+         * If no prefix exists, then use the view's model as the default data object.
+         */
+    function getEventDataSource( $, data, argPrefix ){
+        var dataSource,
+            domEvent = data.domEvent || undefined,
+            globals = {
+                window: window,
+                document: document,
+                body: document.body,
+                $window: $( window ),
+                $document: $( window ),
+                $body: $( document.body )
+            };
+
+        if( argPrefix ){
+            if( globals[ argPrefix ] ){
+                return globals[ argPrefix ];
+            }
+
+            // domEvent is required to evaluate "event" and "element" argument types
+            if( domEvent ){
+                switch( argPrefix ){
+                    case 'element':
+                        return domEvent.target;
+                    case '$element':
+                        return domEvent.target ? $( domEvent.target ) : undefined;
+                    case 'event':
+                        return domEvent;
+                        // "$event" is invalid, so force it to return empty
+                    case '$event':
+                        return undefined;
+                    default:
+                }
+            }
+        }
+
+        return dataSource;
+    }
+
+    /**
+       * If an action argument has a jQuery-style prefix (e.g. $element), then the immediately following
+       * property in the argument string should be a function since that's how jQuery works. In earlier
+       * versions of bluejs, this function was called automatically in the context of the jQuery object.
+       * When using PathToolkit, the object path must include () in order to trigger execution of a function.
+       * For any argument string prefixed with a jQuery entity, fill in the () for the leading property
+       * for full backward compatibility.
+       * No need to check for any more path segments beyond the first since the earlier code only supported
+       * the one path segment. Example: $element.height was supported, but $element.parent.height was not.
+       */
+    function jqueryCleanup( arg ){
+        var argMatch = arg.match( /^([^.]+)(\..+)?$/ ),
+            firstProp = argMatch[ 1 ];
+        // If the first property is a number, then it's an array index and we don't turn it into
+        // a function. If it's not a number, then the last character should be a ), indicating a
+        // function call. If not, add the () to the end.
+        if( isNaN( parseInt( firstProp, 10 ) ) && firstProp[ firstProp.length - 1 ] !== ')' ){
+            return arg.replace( firstProp, firstProp + '()' );
+        }
+        return arg;
+    }
+
+    /**
+   * If the webspec dictates that a triggered action should receive a specific list of arguments, some of
+   * those arguments must be calculated from the document, or the targeted element, for example. This function
+   * creates the arguments array of values based on the configuration for the action found in the webspec.
+   * @function module:blue-view-ractive.Bridge~makeEventData
+   * @param {object} data Object provided by Ractive when a Ractive event is fired
+   * @param {object} model View model
+   * @param {Array} argList List of arguments from the webspec
+   * @returns {Array} New array of values calculated from the "argList" parameter
+   */
+    function makeEventData( $, data, model, arg ){
+        var dataSource,
+            argCopy = arg + '',
+            argParts = argCopy.match( /^(((\$)?(window|document|body|element|event))\.).+$/ ) || [],
+            prefix = argParts[ 2 ] || '',
+            dollar = argParts[ 3 ] || '',
+            argTokens,
+            val = null;
+
+        if( prefix ){
+            // strip prefix from argument string so it won't be treated as a property
+            argCopy = argCopy.replace( prefix + '.', '' );
+            if( dollar && argCopy ){
+                // ensure jquery properties are properly given as function calls
+                // for backward compatibility with earlier code where this was
+                // not needed in the webspec
+                argCopy = jqueryCleanup( argCopy );
+            }
+        }
+        argTokens = ptkFull.getTokens( argCopy );
+
+        // if valid argument string...
+        if( argTokens ){
+            // dataSource defaults to view model, but may be set to something specific based
+            // on argument string (e.g. "document.height" sets dataSource to document).
+            dataSource = getEventDataSource( $, data, prefix ) || model;
+            val = ptkFull.get( dataSource, argTokens );
+            if( typeof val === 'function' ){
+                return  val();
+            } else if( typeof val === 'undefined' ){
+                return null;
+            }
+            return val;
+        }
+
+        return undefined;
+    }
+    function shimBridgeEventHandlers(){
+        var $ = legacy$.getJQuery();
+        Bridge.prototype._makeEventDataCallback = function( data, model, arg ){
+            return makeEventData( $, data, model, arg );
+        };
+    }
+
+    return function( new$ ){
+        logger.warn( 'DEPRECATED: BLUEJS-6510 - jQuery has been fully removed from BlueJS and its use is discouraged due to security risks.' );
+        legacy$.setJQuery( new$ || root.$ );
+        shimPage$();
+        shimComponentCreation();
+        shimInsertElement();
+        shimViewConstructor();
+        shim$();
+        shimInsert();
+        shimBridgeEventHandlers();
+    };
+} );

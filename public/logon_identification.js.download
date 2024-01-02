@@ -1,0 +1,250 @@
+define([], function() { return {
+  "name": "LOGON_IDENTIFICATION",
+  "data": {
+    "logonIdentificationDelivery": {
+      "type": "List",
+      "items": {
+        "logonIdentificationDeliveryId": "Numbers",
+        "logonIdentificationDeliveryDevice": "Description",
+        "logonIdentificationDeliveryMethod": {
+          "type": "List",
+          "itemType": "IdentificationCodeMode"
+        }
+      }
+    },
+    "logonIdentificationDeliveryId": {
+      "type": "Numbers"
+    },
+    "identificationCode": {
+      "type": "IdentificationCode"
+    },
+    "password": {
+      "type": "Noop",
+      "PI": true
+    },
+    "securityToken": {
+      "type": "RSAToken"
+    },
+    "progressBar": {
+      "type": "List",
+      "items": {
+        "name": "Description",
+        "step": "Numbers",
+        "percentage": "Numbers"
+      }
+    },
+    "progressBarTotalSteps": {
+      "type": "Numbers"
+    },
+    "progressBarCurrentStep": {
+      "type": "Numbers",
+      "exportable": true
+    },
+    "logonIdentificationDeviceType": {
+      "type": "Description"
+    },
+    "identificationDeliveryMethodOptionId": {
+      "type": "Description"
+    },
+    "identificationCodeDeliveredDevice": {
+      "type": "Description",
+      "exportable": true
+    },
+    "differentNotificationMethods": {
+      "type": "List",
+      "items": {
+        "notificationMethod": "Description",
+        "notificationId": "Description"
+      }
+    },
+    "notificationMethod": {
+      "type": "Description"
+    },
+    "notificationId": {
+      "type": "Description"
+    },
+    "deviceType": {
+      "type": "Description"
+    },
+    "selectedMethodDeviceId": {
+      "type": "Description"
+    }
+  },
+  "actions": {
+    "requestIdentificationAdvisory": true,
+    "exitIdentificationAdvisory": true,
+    "requestDeliveryMethodHelpMessage": true,
+    "exitDeliveryMethodHelpMessage": true,
+    "requestPhoneHelpMessage": true,
+    "exitPhoneHelpMessage": true,
+    "exitIdentification": true,
+    "requestDeliveryDevices": true,
+    "provideIdentificationCode": true,
+    "provideIdentificationCode2fa": true,
+    "requestIdentificationCode": true,
+    "logonToLandingPage": true,
+    "requestOpenChaseMobileAppPage": true,
+    "skipBack": true,
+    "sendNotificationToChaseMobileApp": true,
+    "sendNotificationToChaseMobileApp2fa": true,
+    "requestSendNotificationToChaseMobileAppLabelHelpMessage": true,
+    "requestSendNotificationToChaseMobileApp2faHelpMessage": true,
+    "exitSendNotificationToChaseMobileAppLabelHelpMessage": true,
+    "sendAnotherNotification": true,
+    "contactADifferentWay": true,
+    "requestIdentificationCodeDeliveryMethod": true,
+    "requestOpenChaseMobileApp": true,
+    "requestCustomerQuestionsHelp": true,
+    "chooseADifferentNotificationMethod": true,
+    "requestInAppAuthenticationHeaderHelpMessage": true,
+    "requestIdentificationCodeExist": true,
+    "generateAnotherCode": true,
+    "requestOtpVerify": true,
+    "doNotCancel": true,
+    "confirmCancel": true,
+    "exitQuickPay": true,
+    "returnToFlow": true,
+    "requestDebitPin": true,
+    "requestDebitPinVerificationMethod": true
+  },
+  "states": {
+    "identificationCodeByCallRequested": true,
+    "identificationAdvisoryOverlay": true,
+    "validationErrorDisplayed": true
+  },
+  "settings": {
+    "logonIdentificationErrorHeader": true,
+    "logonIdentificationErrorAdvisory": true,
+    "identificationCodeErrorHeader": true,
+    "identificationCodeErrorAdvisory": true,
+    "progressBarLabel": true,
+    "progressBarAda": true,
+    "logonIdentificationHeader": true,
+    "errorAnnouncementAda": true,
+    "cancelLabel": true,
+    "nextLabel": true,
+    "unrecognizedDeviceHeader": true,
+    "unrecognizedDeviceMessage": true,
+    "requestIdentificationAdvisoryLabel": true,
+    "requestIdentificationAdvisoryAda": true,
+    "identificationAdvisoryHeader": true,
+    "identificationAdvisoryMessage": true,
+    "beginHelpMessageAda": true,
+    "endHelpMessageAda": true,
+    "exitHelpMessageAda": true,
+    "requestIdentificationCodeHeader": true,
+    "requestIdentificationCodeMessage": true,
+    "requestIdentificationCodeAlreadyExistMessage": true,
+    "requestIdentificationCodeAlreadyExistLabel": true,
+    "requestIdentificationCodeAlreadyExistLabel2fa": true,
+    "requestIdentificationCodeDeliveryMethodHeader": true,
+    "requestDeliveryMethodHelpMessageAda": true,
+    "phoneHelpMessage": true,
+    "requestPhoneHelpMessageAda": true,
+    "requestIdentificationCodePhoneLabel": true,
+    "requestIdentificationCodeCallLabel": true,
+    "requestIdentificationCodeCallAda": true,
+    "requestIdentificationCodeCallUsLabel": true,
+    "requestIdentificationCodeCallUsAda": true,
+    "requestIdentificationCodeViaEmailLabel": true,
+    "requestIdentificationCodeViaEmailAda": true,
+    "contactADifferentWayCallUsLabel": true,
+    "confirmIdentityHeader": true,
+    "identificationCodeCallLabel": true,
+    "identificationDeliveryMethodMessageLabel": true,
+    "identificationOneTimeCodeLabel": true,
+    "requestIdentificationCodeExistLabel": true,
+    "identificationCodeTextHeader": true,
+    "identificationVoiceTextHeader": true,
+    "requestIdentificationCodeLabel": true,
+    "identificationCodeMessage": true,
+    "identificationVoiceMessage": true,
+    "invalidMobileDeviceLabel": true,
+    "requestChaseMobileAppLabel": true,
+    "requestIdentificationCodePhoneSelectedAda": true,
+    "requestIdentificationCodeTextLabel": true,
+    "requestIdentificationCodeTextSelectedAda": true,
+    "requestIdentificationCodeVoiceLabel": true,
+    "requestIdentificationCodeVoiceSelectedAda": true,
+    "requestIdentificationCodeEmailLabel": true,
+    "requestIdentificationCodeEmailSelectedAda": true,
+    "requestIdentificationCodeLinkedLabel": true,
+    "requestIdentificationCodeByCallLabel": true,
+    "requestIdentificationCodeByCallAdvisory": true,
+    "submitIdentificationCodeHeader": true,
+    "submitIdentificationCodeMessage": true,
+    "identificationCodeLabel": true,
+    "identificationCodeError": true,
+    "passwordLabel": true,
+    "passwordError": true,
+    "securityTokenLabel": true,
+    "securityTokenError": true,
+    "identificationCodeNotReceivedHeader": true,
+    "identificationCodeNotReceivedMessage": true,
+    "requestDeliveryDevicesNavigation": true,
+    "skipBackLabel": true,
+    "importantAda": true,
+    "opensDialogAda": true,
+    "exitIdentificationAdvisoryAda": true,
+    "newDeviceSignInHeader": true,
+    "newDeviceSignInHeader2fa": true,
+    "newDeviceSignInAdvisory": true,
+    "newDeviceSignInAdvisory2fa": true,
+    "newDeviceSignInMessage": true,
+    "notificationSentToChaseMobileAppLabel": true,
+    "sendNotificationToChaseMobileAppLabel": true,
+    "sendNotificationToChaseMobileAppLabel2fa": true,
+    "requestSendNotificationToChaseMobileAppLabelHelpMessageAda": true,
+    "sendNotificationToChaseMobileAppHelpMessage": true,
+    "sendNotificationToChaseMobileAppHelpMessageAda": true,
+    "sendNotificationToChaseMobileAppHelpMessage2fa": true,
+    "codeGeneratorHeader": true,
+    "codeGeneratorMessage": true,
+    "codeGeneratorAdvisory": true,
+    "generateAnotherCodeLabel": true,
+    "chooseADifferentMethodLabel": true,
+    "notificationMethodPlaceholder": true,
+    "sendAnotherNotificationLabel": true,
+    "contactADifferentWayLabel": true,
+    "customerQuestionsHelpHeader": true,
+    "openChaseMobileAppHeader": true,
+    "checkYourDeviceHeader": true,
+    "openChaseMobileAppAdvisory": true,
+    "openChaseMobileAppMessage": true,
+    "openChaseMobileAppLabel": true,
+    "telephoneIconAda": true,
+    "inAppAuthenticationHeader": true,
+    "inAppAuthenticationAdvisory": true,
+    "inAppAuthenticationMessage": true,
+    "inAppAuthenticationContent": true,
+    "inAppAuthenticationHeaderHelpMessage": true,
+    "requestInAppAuthenticationHeaderHelpMessageAda": true,
+    "lastUsedLabel": true,
+    "completeLabel": true,
+    "inProgressLabel": true,
+    "closeLabel": true,
+    "cancelConfirmationHeader": true,
+    "cancelConfirmationInstruction": true,
+    "doNotCancelLabel": true,
+    "confirmCancelLabel": true,
+    "invalidMobilePhoneLabel": true,
+    "confirmChaseMobileAppAdvisory": true,
+    "confirmJPMorganMobileAppAdvisory": true,
+    "sendNotificationToChaseMobileLabel": true,
+    "requestSendNotificationToChaseMobileApp2faHelpMessageAda": true,
+    "sendNotificationToChaseMobileApp2faHelpMessage": true,
+    "requestThirdPartyCodeGenHeader": true,
+    "requestThirdPartyCodeGenAdvisory": true,
+    "requestThirdPartyCodeGenContent": true,
+    "selectIdentificationCodeMethodMessage": true,
+    "identificationCodeMethod": true,
+    "requestThirdPartyCodeGenHelpMessage": true,
+    "requestThirdPartyIdentificationCodeMessage": true,
+    "requestIdentificationCodeReceivedCodeMessage": true,
+    "requestIdentificationCodeReceivedCodeContent": true,
+    "requestThirdPartyCodeErrorHeader": true,
+    "selectIdentificationDebitPinLabel": true,
+    "selectIdentificationContactMethodLabel": true,
+    "chaseLogoAda": true
+  }
+}; });

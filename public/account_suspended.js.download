@@ -1,0 +1,21 @@
+define([], function() { return {
+  "name": "ACCOUNT_SUSPENDED",
+  "data": {
+    "suspiciousErrorDisplayedState": {
+      "type": "OnOff"
+    }
+  },
+  "actions": {
+    "exitAccountSuspended": true,
+    "requestContactUs": true
+  },
+  "settings": {
+    "accountSuspendedErrorHeader": true,
+    "accountSuspendedErrorAdvisory": true,
+    "exitAccountSuspendedLabel": true,
+    "importantAda": true,
+    "exitAccountSuspendedAda": true,
+    "identificationCodeErrorHeader": true,
+    "identificationCodeErrorMessage": true
+  }
+}; });

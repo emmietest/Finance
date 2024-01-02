@@ -1,0 +1,19 @@
+define( ['require','blue-legacy/blue/jQuery','blue/log','blue/root'],function( require ){
+    'use strict';
+    var legacy$ = require( 'blue-legacy/blue/jQuery' ),
+        getLogger = require( 'blue/log' ),
+        root = require( 'blue/root' ),
+        logger = getLogger( '[blue:legacy:blue-core]' );
+
+    function defineBlue$(){
+        root.define( 'blue/$', [ 'blue-legacy/blue/jQuery' ], function( legacy$ ){
+            return legacy$.getJQuery();
+        } );
+    }
+
+    return function( new$ ){
+        logger.warn( 'DEPRECATED: BLUEJS-6510 - jQuery has been fully removed from BlueJS and its use is discouraged due to security risks.' );
+        legacy$.setJQuery( new$ || root.$ );
+        defineBlue$();
+    };
+} );

